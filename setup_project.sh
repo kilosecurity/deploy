@@ -3,17 +3,19 @@
 set -e
 
 echo ">>> Controllo se la cartella web esiste"
-if [ -d "web" ]; then
-    echo ">>> Rimuovo la cartella web esistente"
-    rm -rf web
+if [ -d "/var/www/web/.git" ]; then
+    echo ">>> Aggiorno la cartella web esistente"
+    git pull origin main
+else
+    echo ">>> Clono il repository da GitHub"
+    git clone git@github.com:kilosecurity/nextid_web.git /var/www/web
 fi
+cd /var/www/web
+composer install --no-dev --optimize-autoloader
 
-echo ">>> Clono il repository da GitHub"
-git clone git@github.com:kilosecurity/nextid_web.git web
-mv ./web /var/www/web
+php artisan migrate --force
 
-composer install
-
-php artisan migrate
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
 
 echo ">>> Progetto configurato correttamente"
