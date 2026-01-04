@@ -7,7 +7,9 @@ CREDS="/root/.secrets/certbot/namecheap.ini"
 
 echo ">>> Installo certbot e plugin Namecheap"
 apt update
-apt install -y certbot python3-certbot-dns-namecheap
+sudo snap install certbot --classic
+sudo snap set certbot trust-plugin-with-root=ok
+sudo snap install certbot-dns-namecheap
 
 echo ">>> Richiedo certificato wildcard per *.$DOMAIN"
 
