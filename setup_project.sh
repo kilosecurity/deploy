@@ -10,6 +10,7 @@ fi
 
 echo ">>> Clono il repository da GitHub"
 git clone git@github.com:kilosecurity/nextid_web.git web
+mv ./web /var/www/web
 
 composer install
 
