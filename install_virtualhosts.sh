@@ -2,7 +2,9 @@
 
 set -e
 
-VHOST_SRC="./virtualhosts"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+VHOST_SRC="$SCRIPT_DIR/virtualhosts"
 APACHE_SITES="/etc/apache2/sites-available"
 
 if [ ! -d "$VHOST_SRC" ]; then
