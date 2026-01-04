@@ -9,3 +9,4 @@ set -e
 ./install_base.sh
 ./install_mercure.sh
 ./install_virtualhosts.sh
+./install_project.sh
